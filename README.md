@@ -26,12 +26,12 @@ Things you may want to cover:
 <!-- usersテーブル -->
 
 * usersテーブル
-| Column             | Type               | Options                   |
-| ------             | -------            | ------------------------- | 
-| email              | string             | null: false, unique: true | #email
-| encrypted_password | string             | null: false               | #password
-| nickname           | string             | null: false               | #nickname
-| kiryoku_id         | integer            | null: false               | #棋力
+|:Column             :|:Type              :|:Options                    :|
+|:------             :|:-------           :|: ------------------------- :| 
+|:email              :|:string            :|:null: false, unique: true  :| #email
+|: encrypted_password :|: string           :|:null: false                :| #password
+|: nickname           :|: string           :|: null: false               :| #nickname
+|: kiryoku_id         :|: integer          :|: null: false               :| #棋力
 
 * * Association
 - has_many : tweets
