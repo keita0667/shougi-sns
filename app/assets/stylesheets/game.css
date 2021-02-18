@@ -1,0 +1,155 @@
+.detail-table {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+  padding: 10vh 15vw;
+  width: 90vw;
+  border: 5px solid #FF0000;
+}
+
+.detail-table-list{
+  vertical-align: middle;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+}
+
+tr{
+  border: 2px solid #333333;
+}
+
+p{
+  font-size: 50px;
+}
+
+.detail-item {
+  width: 20%;
+  background-color: #eee;
+  border: 1px solid #dedede;
+  font-size: 14px;
+  text-align: center;
+}
+
+.detail-value {
+  width: 80%;
+  padding: 20px;
+  border: 1px solid #dedede;
+  font-size: 14px;
+}
+
+.comment-box {
+  width: 70vw;
+  background-color: #fff;
+  margin: 5vh 0;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.comment-text {
+  width: 100%;
+  height: 100px;
+  border: solid 2px #dedede;
+  resize: none;
+
+}
+
+.comment-warn {
+  padding: 10px;
+  font-size: 14px;
+  margin: 10px 0px;
+  text-align: left;
+}
+
+.comment-btn {
+  line-height: 48px;
+  background-color: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 50%;
+  min-width: 150px;
+  font-size: 18px;
+  border-radius: 100px;
+  margin-bottom: 2vh;
+}
+
+.comment-flag-icon {
+  margin: 10px 5px 0 0;
+}
+
+.game-comment-text{
+  background-color: white;
+}
+
+.comment-list{
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 10px solid #dedede;
+  font-size: 14px;
+}
+
+.game-kaisai{
+  display: block;
+}
+
+.kaisai-button{
+  background-color: yellow;
+  border: medium solid #8B4513;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-size: xx-large;
+  width: 70vw;
+  height: 90px;
+  margin-top: 200px;
+  margin-bottom: 100px;
+}
+
+.vs-button{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-size: xx-large;
+  background-color: #FF3333;
+  border-radius: 20px;
+  color: #fff;
+  border: 0;
+  font-size: 18px;
+  width: 30vw;
+  height: 50px;
+  padding-top: 12px;
+  margin-bottom: 100px;
+}
+.game-new{
+  display: flex;
+  justify-content: center;
+}
+
+.game-date{
+  width: 50vw;
+}
+.my-kiryoku{
+  width: 50vw;
+}
+
+.game-zoom{
+  width: 80vw;
+}
+
+.comment-user{
+  font-size: 15px;
+  color: #CCCCCC;
+}
+
+.comment-content{
+  font-size: 25px;
+  color: #000000;
+}
+
+.shougisns{
+  font-weight: bolder;
+}

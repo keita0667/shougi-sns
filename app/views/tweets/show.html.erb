@@ -1,0 +1,38 @@
+<div>
+<div class="toukousya">投稿者:<%= @tweet.user.nickname %>, 投稿者の棋力:<%= @tweet.user.kiryoku.name %>, 局面:<%= @tweet.tag %></div>
+  <div class="content_post"><%= image_tag @tweet.image, class:"img_post" %>
+ 
+  </div>
+  <div class="container">
+  <h4>質問内容</h4>
+  <%= @tweet.text %>
+  </div>
+    <% if current_user %>
+      <%= form_with(model: [@tweet, @comment], local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "回答する", rows: "4", class:"answer-memo" %>
+        <%= form.submit "回答送信", class:"answer-button" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    <div class="comments">
+      <h4 class="answer-list">＜回答一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong>回答者：<%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
+            <div class="container">
+            <%= comment.text %>
+            <div id="specialthanks-container">special thanks: <%= comment.special_thanks.count %></div>
+            <div>normal thanks: <%= comment.thanks.count %></div>
+            </div>
+            
+          </p>
+          <div>
+          <div class="thanks-button">
+          <span id="special-thanks-button"><%= button_to 'special thanks', tweet_comment_special_thanks_path(comment, comment.id) %></span>
+          <%= button_to 'normal thanks', tweet_comment_thanks_path(comment, comment.id) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>

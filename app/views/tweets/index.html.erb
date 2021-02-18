@@ -1,0 +1,23 @@
+
+<div class="question">
+<%= link_to "質問する", new_tweet_path, class: "question-button" %>
+</div>
+
+<%= form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.select :keyword, [["序盤", "序盤"], ["中盤", "中盤"], ["終盤", "終盤"], ["全局面", "全局面"]], include_blank: "局面で絞り込む(序盤、中盤、終盤、全局面)" %>
+  <%= form.submit "絞り込み", class: "search-btn" %>
+<% end %>
+
+<div class="shougi-top">
+<div>
+<%= "将棋SNSへようこそ！"%></br>
+<%= "ここでは将棋について分からないことを質問したり回答できます。是非、楽しんでください！" %>
+</div>
+<%= image_tag('shougi-top.jpg') %>
+</div>
+<div class="question">
+<%= link_to "質問する", new_tweet_path, class: "question-button" %>
+</div>
+<div class="contents row">
+  <%= tweet_lists(@tweets) %>
+</div>

@@ -1,0 +1,38 @@
+<table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">対戦者の希望日時</th>
+          <td class="detail-value"><%= @game.game_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">使用する将棋アプリ</th>
+          <td class="detail-value"><%= @game.game_app %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">対戦者の棋力</th>
+          <td class="detail-value"><%= @game.kiryoku.name %></td> 
+        </tr>
+        <tr>
+          <th class="detail-item">対戦者からのコメント</th>
+          <td class="detail-value"><%= @game.text %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="comment-box">
+    <%= form_with(model: [@game, @game_comment], url:game_game_comments_path(game_id: @game.id), id:"comment-form", local: true) do |f| %>
+    <%= f.text_area :game_comment_text, placeholder:"対局を申し込もう！",class:"comment-text", id:"comment-text-id" %>
+    <%= f.submit "対局の申し込み", class:"comment-btn", id:"comment-btn-id" %>
+    <% end %>
+<p><コメント一覧></p>
+      <% @game_comments.each do |game_comment| %>
+      <div class="comment-list", id="comment-list-id">
+      <div class="comment-user">
+      対局希望者 : <%= game_comment.user.nickname %> 
+      </div>
+      <div class="comment-content">
+      コメント内容 : <%= game_comment.game_comment_text %>
+      </div>
+      </div>
+      <% end %>
+  </div>

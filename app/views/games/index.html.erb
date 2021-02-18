@@ -1,0 +1,34 @@
+<div class="game-kaisai">
+
+<%= "ここのオンライン会場では対局を主催したり、対局に申し込めます。" %>
+<div>
+<%= link_to "対局を主催する", new_game_path(user_id: current_user.id), class:"kaisai-button" %>
+</div>
+
+<div>
+<% @games.each do |game| %>
+<table class="detail-table">
+      <tbody class="detail-table-list">
+        <tr>
+          <th class="detail-item">対戦者の希望日時</th>
+          <td class="detail-value"><%= l game.game_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">使用する将棋アプリ</th>
+          <td class="detail-value"><%= game.game_app %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">対戦者の棋力</th>
+          <td class="detail-value"><%= game.kiryoku.name %></td> 
+        </tr>
+        <tr>
+          <th class="detail-item">対戦者からのコメント</th>
+          <td class="detail-value"><%= game.text %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "対局を申し込む。", game_path(game.id), class:"vs-button" %>
+<% end %>
+</div>
+
+</div>

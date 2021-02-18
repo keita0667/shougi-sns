@@ -1,0 +1,11 @@
+<div class="toukousya">投稿者:<%= tweet.user.nickname %>, 投稿者の棋力:<%= tweet.user.kiryoku.name %>, 局面:<%= tweet.tag %></div>
+  <div class="index-img">
+    <%= image_tag tweet.image %>
+  </div>
+</div>
+
+<%# 
+    いいね件数 ： <%= render partial: "like", locals: { tweet: @tweets, like: @likes } %> 
+    <div class="detail">
+    <%= link_to '詳細を見る', tweet_path(tweet.id), method: :get, class:"detail-post" %>
+    </div>
