@@ -113,8 +113,8 @@ Things you may want to cover:
 <!-- game_commentsテーブル -->
 
 * game_commentsテーブル
-| Column            | Type    | Options                        |
-| ----------------- | ------- | ------------------------------ | 
+| Column            |Type     |Options                         |
+|-------------------|---------|--------------------------------| 
 | game_comment_text | text    | null: false                    | #コメント
 | user_id           | integer | null: false, foreign_key: true | #user_id外部キー参照
 | game_id           | integer | null: false, foreign_key: true | #game_id外部キー参照
