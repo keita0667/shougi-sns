@@ -113,6 +113,7 @@ Things you may want to cover:
 <!-- game_commentsテーブル -->
 
 * game_commentsテーブル
+
 | Column            |Type     |Options                         |
 |-------------------|---------|--------------------------------| 
 | game_comment_text | text    | null: false                    | #コメント
