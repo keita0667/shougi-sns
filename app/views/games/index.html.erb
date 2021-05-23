@@ -1,6 +1,15 @@
 <div class="game-kaisai">
+<div class="kaisai-description"><%= "ここでは将棋アプリを通じて対局を主催したり、対局に申し込めます。" %></div>
 
-<%= "ここのオンライン会場では対局を主催したり、対局に申し込めます。" %>
+<div class="game-picture">
+<div>
+<%= image_tag 'wozu-top.jpeg', class:"wozu-top" %>
+</div>
+<div>
+<%= image_tag 'quest-top.png', class:"quest-top" %>
+</div>
+</div>
+
 <div>
 <%= link_to "対局を主催する", new_game_path(user_id: current_user.id), class:"kaisai-button" %>
 </div>
@@ -10,12 +19,22 @@
 <table class="detail-table">
       <tbody class="detail-table-list">
         <tr>
+          <th class="detail-item">投稿者</th>
+          <td class="detail-value"><%= game.user.nickname %></td>
+        </tr>
+        <tr>
           <th class="detail-item">対戦者の希望日時</th>
           <td class="detail-value"><%= l game.game_date %></td>
         </tr>
         <tr>
           <th class="detail-item">使用する将棋アプリ</th>
+          <% if game.game_app == "将棋ウォーズ" %>
+          <td class="detail-value"><%= game.game_app %><%= image_tag 'wozu-top.jpeg', class:"wozu-td" %></td>
+          <% elsif game.game_app == "将棋Quest" %>
+          <td class="detail-value"><%= game.game_app %><%= image_tag 'quest-top.png', class:"quest-td" %></td>
+          <% else %>
           <td class="detail-value"><%= game.game_app %></td>
+          <% end %>
         </tr>
         <tr>
           <th class="detail-item">対戦者の棋力</th>
@@ -24,6 +43,17 @@
         <tr>
           <th class="detail-item">対戦者からのコメント</th>
           <td class="detail-value"><%= game.text %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">zoom接続の希望有無</th>
+          <% if game.zoom == 0 %>
+           <td class="detail-value"><%= "どちらでもいい" %></td> 
+            
+          <% elsif game.zoom == 1 %>
+           <td class="detail-value"><%= "希望する(感想戦希望)" %></td> 
+          <% else %>
+           <td class="detail-value"><%= "希望しない" %></td> 
+           <% end %>
         </tr>
       </tbody>
     </table>

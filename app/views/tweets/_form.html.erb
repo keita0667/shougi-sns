@@ -1,4 +1,5 @@
 <%= form_with(model: @tweet, local: true) do |f| %>
+  <span>現局面</span></br>
   <%= f.select :tag, [["序盤", "序盤"], ["中盤", "中盤"], ["終盤", "終盤"]], include_blank: "選択してください(序盤、中盤、終盤)" %>
   </br><span>局面図を載せてください</span></br>
   <%= f.file_field :image %>

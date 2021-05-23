@@ -9,8 +9,8 @@
   </div>
     <% if current_user %>
       <%= form_with(model: [@tweet, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "回答する", rows: "4", class:"answer-memo" %>
-        <%= form.submit "回答送信", class:"answer-button" %>
+        <%= form.text_area :text, placeholder: "コメントを入力", rows: "4", class:"answer-memo" %>
+        <%= form.submit "SEND", class:"answer-button" %>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
@@ -23,14 +23,22 @@
             <strong>回答者：<%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
             <div class="container">
             <%= comment.text %>
-            <div id="specialthanks-container">special thanks: <%= comment.special_thanks.count %></div>
-            <div>normal thanks: <%= comment.thanks.count %></div>
+            <div id="render-special-thanks">
+            <%= render partial: "special_thanks/special_thanks", locals:{comment: comment} %>
+            </div>
+            <div>normal thanks × <%= comment.thanks.count %></div>
             </div>
             
           </p>
           <div>
           <div class="thanks-button">
-          <span id="special-thanks-button"><%= button_to 'special thanks', tweet_comment_special_thanks_path(comment, comment.id) %></span>
+          <span id="special-thanks-button">
+          
+          <% if comment.special_thanks.present? %>
+          <%= button_to 'special thanks', tweet_comment_special_thank_path(tweet_id: @tweet.id, user_id: @tweet.user_id, comment_id: comment.id), method: :delete, remote: true %></span>
+          <% else %>
+          <%= button_to 'special thanks', tweet_comment_special_thanks_path(tweet_id: @tweet.id, user_id: @tweet.user_id, comment_id: comment.id), method: :post, remote: true %></span>
+          <% end %>
           <%= button_to 'normal thanks', tweet_comment_thanks_path(comment, comment.id) %>
           </div>
         <% end %>

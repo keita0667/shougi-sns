@@ -5,13 +5,12 @@
 
 require("@rails/ujs").start()
 require("turbolinks").start()
-require("jquery").start()
-require("jquery_ujs").start()
+// require("jquery").start()
+// require("jquery_ujs").start()
 require("@rails/activestorage").start()
 require("channels")
-// require("../special_thanks")
-require("../memo")
-
+require("../game_memo")
+// require("../memo")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

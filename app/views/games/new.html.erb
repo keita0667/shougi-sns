@@ -19,7 +19,7 @@
  <%= "zoomで感想戦などをやりたいか入力" %>
  </div>
  <div class="game-zoom">
-  <%= form.select :zoom, [["希望する", "希望する"], ["希望しない", "希望しない"], ["どちらでもいい", "どちらでもいい"]], include_blank: "zoomで繋ぐことを希望しますか？"%>
+  <%= form.select :zoom, [["希望する", 1], ["希望しない", 2], ["どちらでもいい", 0]], include_blank: "zoomで繋ぐことを希望しますか？"%>
  </div>
 
  

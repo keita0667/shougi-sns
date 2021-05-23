@@ -1,9 +1,12 @@
 function memo() {
-  const submit = document.getElementById("comment-btn-id");
-  submit.addEventListener("click", (e) => {
-    const formData = new FormData(document.getElementById("comment-form"));
+  const submit_tweet = document.getElementById("submit-btn-tweet");
+  submit_tweet.addEventListener("click", (e) => {
+    const formData = new FormData(document.getElementById("comment-tweet-form"));
     const XHR = new XMLHttpRequest();
-    XHR.open("POST", "", true);
+    const list = document.getElementById("detail-post-id");
+    const gameId = list.getAttribute("tweet-comment-id");
+    console.log(gameId)
+    XHR.open("POST",`/games/${gameId}/game_comments`, true);
     XHR.responseType = "json";
     console.log(1);
     XHR.send(formData);
@@ -12,22 +15,18 @@ function memo() {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
       }
-      const content = XHR.response.game_comment;
-      console.log(content)
-      const list = document.getElementById("comment-list-id");
-      console.log(list)
+      const gamecomment = XHR.response.game_comment;
       const formText = document.getElementById("comment-text-id");
       const current_user_nickname = document.getElementById("current_user.nickname").textContent;
       console.log(current_user_nickname)
       const HTML = `
       <div class="comment-list", id="comment-list-id">
         対局希望者 : ${current_user_nickname} </br>
-        コメント内容 : ${content.game_comment_text}
+        コメント内容 : ${gamecomment.game_comment_text}
       </div>`;
       console.log(HTML)
       list.insertAdjacentHTML("beforebegin", HTML);
       formText.value = "";
-      console.log(final)
     };
     e.preventDefault();
   });

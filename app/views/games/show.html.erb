@@ -1,6 +1,10 @@
 <table class="detail-table">
       <tbody>
         <tr>
+          <th class="detail-item">投稿者</th>
+          <td class="detail-value"><%= @game.user.nickname %></td>
+        </tr>
+        <tr>
           <th class="detail-item">対戦者の希望日時</th>
           <td class="detail-value"><%= @game.game_date %></td>
         </tr>
@@ -11,6 +15,17 @@
         <tr>
           <th class="detail-item">対戦者の棋力</th>
           <td class="detail-value"><%= @game.kiryoku.name %></td> 
+        </tr>
+        <tr>
+          <th class="detail-item">zoom接続の希望有無</th>
+          <% if @game.zoom == 0 %>
+           <td class="detail-value"><%= "どちらでもいい" %></td> 
+            
+          <% elsif @game.zoom == 1 %>
+           <td class="detail-value"><%= "希望する(感想戦希望)" %></td> 
+          <% else %>
+           <td class="detail-value"><%= "希望しない" %></td> 
+           <% end %>
         </tr>
         <tr>
           <th class="detail-item">対戦者からのコメント</th>
@@ -26,7 +41,7 @@
     <% end %>
 <p><コメント一覧></p>
       <% @game_comments.each do |game_comment| %>
-      <div class="comment-list", id="comment-list-id">
+      <div class="comment-list", id="comment-list-id" game-comment-id=<%= current_user.id %> >
       <div class="comment-user">
       対局希望者 : <%= game_comment.user.nickname %> 
       </div>
