@@ -72,24 +72,6 @@ ActiveRecord::Schema.define(version: 2021_02_14_083848) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "special_thanks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_special_thanks_on_comment_id"
-    t.index ["user_id"], name: "index_special_thanks_on_user_id"
-  end
-
-  create_table "thanks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_thanks_on_comment_id"
-    t.index ["user_id"], name: "index_thanks_on_user_id"
-  end
-
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text"
     t.string "tag"
@@ -118,9 +100,5 @@ ActiveRecord::Schema.define(version: 2021_02_14_083848) do
   add_foreign_key "games", "users"
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
-  add_foreign_key "special_thanks", "comments"
-  add_foreign_key "special_thanks", "users"
-  add_foreign_key "thanks", "comments"
-  add_foreign_key "thanks", "users"
   add_foreign_key "tweets", "users"
 end
