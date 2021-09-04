@@ -1,12 +1,15 @@
 function memo() {
-  const submit_tweet = document.getElementById("submit-btn-tweet");
-  submit_tweet.addEventListener("click", (e) => {
-    const formData = new FormData(document.getElementById("comment-tweet-form"));
+  console.log(1)
+  document.addEventListener('click', e => {
+    if (e.target.closest('#answer-button-id')) {
+      console.log(2)
+    e.preventDefault();
+    const formData = new FormData(document.getElementById("tweet-form"));
     const XHR = new XMLHttpRequest();
-    const list = document.getElementById("detail-post-id");
-    const gameId = list.getAttribute("tweet-comment-id");
-    console.log(gameId)
-    XHR.open("POST",`/games/${gameId}/game_comments`, true);
+    const list = document.getElementById("answer-list-id");
+    console.log(list)
+    const tweetId = gon.current_tweet_id;
+    XHR.open("POST",`/tweets/${tweetId}/comments`, true);
     XHR.responseType = "json";
     console.log(1);
     XHR.send(formData);
@@ -15,20 +18,25 @@ function memo() {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
       }
-      const gamecomment = XHR.response.game_comment;
-      const formText = document.getElementById("comment-text-id");
-      const current_user_nickname = document.getElementById("current_user.nickname").textContent;
+      const comment = XHR.response.comment;
+      console.log(comment)
+      const formText = document.getElementById("answer-memo-id");
+      const current_user_nickname = document.getElementById("current_user_nickname").textContent;
       console.log(current_user_nickname)
       const HTML = `
-      <div class="comment-list", id="comment-list-id">
-        対局希望者 : ${current_user_nickname} </br>
-        コメント内容 : ${gamecomment.game_comment_text}
-      </div>`;
+      <p>
+            <strong>回答者：${current_user_nickname}</strong>
+            <div class="container">
+            ${comment.text}
+            </div>
+          </p>`;
       console.log(HTML)
-      list.insertAdjacentHTML("beforebegin", HTML);
+      const inHTML = HTML.replace(/\n/g, '<br>');
+      list.insertAdjacentHTML("afterend", inHTML);
       formText.value = "";
     };
-    e.preventDefault();
+    alert("コメントを送信しました");
+  };
   });
 }
 window.addEventListener("load", memo);

@@ -4,9 +4,6 @@ class GameCommentsController < ApplicationController
     if @game_comment.valid?
       @game_comment.save
       render json:{ game_comment: @game_comment }
-
-    else
-      render "show"
     end
   end
 

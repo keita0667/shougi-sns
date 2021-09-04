@@ -1,45 +1,40 @@
 <div>
 <div class="toukousya">投稿者:<%= @tweet.user.nickname %>, 投稿者の棋力:<%= @tweet.user.kiryoku.name %>, 局面:<%= @tweet.tag %></div>
   <div class="content_post"><%= image_tag @tweet.image, class:"img_post" %>
- 
   </div>
+  <% if user_signed_in? %>
+  <% if current_user.id == @tweet.user_id %>
+  <div class="option">
+       <%= link_to '投稿の編集', edit_tweet_path(@tweet.id) , method: :get, class: "edit-button" %>
+      <%= link_to '削除', tweet_path(@tweet.id), method: :delete, class:'delete-button' %>
+  </div>
+  <% end %>
+    <% end %>
   <div class="container">
   <h4>質問内容</h4>
-  <%= @tweet.text %>
+  <%= safe_join(@tweet.text.split("\n"),tag(:br)) %>
   </div>
     <% if current_user %>
-      <%= form_with(model: [@tweet, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントを入力", rows: "4", class:"answer-memo" %>
-        <%= form.submit "SEND", class:"answer-button" %>
+      <%= form_with(model: [@tweet, @comment], url:tweet_comments_path(tweet_id: @tweet.id), id:"tweet-form", local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントを入力", rows: "4", class:"answer-memo", id:"answer-memo-id" %>
+        <%= form.submit "SEND", class:"answer-button" ,id:"answer-button-id" %></span>
       <% end %>
     <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <h2 style="text-align:center">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</h2>
     <% end %>
     <div class="comments">
-      <h4 class="answer-list">＜回答一覧＞</h4>
+      <h4 class="answer-list", id="answer-list-id">＜回答一覧＞</h4>
       <% if @comments %>
         <% @comments.each do |comment| %>
           <p>
             <strong>回答者：<%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
             <div class="container">
-            <%= comment.text %>
-            <div id="render-special-thanks">
-            <%= render partial: "special_thanks/special_thanks", locals:{comment: comment} %>
+            <%= safe_join(comment.text.split("\n"),tag(:br)) %>
             </div>
-            <div>normal thanks × <%= comment.thanks.count %></div>
-            </div>
-            
           </p>
           <div>
           <div class="thanks-button">
           <span id="special-thanks-button">
-          
-          <% if comment.special_thanks.present? %>
-          <%= button_to 'special thanks', tweet_comment_special_thank_path(tweet_id: @tweet.id, user_id: @tweet.user_id, comment_id: comment.id), method: :delete, remote: true %></span>
-          <% else %>
-          <%= button_to 'special thanks', tweet_comment_special_thanks_path(tweet_id: @tweet.id, user_id: @tweet.user_id, comment_id: comment.id), method: :post, remote: true %></span>
-          <% end %>
-          <%= button_to 'normal thanks', tweet_comment_thanks_path(comment, comment.id) %>
           </div>
         <% end %>
       <% end %>

@@ -3,7 +3,8 @@
   <div class="index-img">
     <%= image_tag tweet.image %>
   </div>
-    <div class="detail">
-    <%= link_to '詳細を見る', tweet_path(tweet.id), method: :get, class:"detail-post", id:"detail-post-id" %>
-    </div>
+  <%= link_to tweet_path(tweet.id), class: "detail", method: :get do %>
+    <div class="detail-post"><%= "詳細を見る" %>
+    </div> 
+    <% end %>
 </div>

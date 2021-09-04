@@ -17,17 +17,6 @@
           <td class="detail-value"><%= @game.kiryoku.name %></td> 
         </tr>
         <tr>
-          <th class="detail-item">zoom接続の希望有無</th>
-          <% if @game.zoom == 0 %>
-           <td class="detail-value"><%= "どちらでもいい" %></td> 
-            
-          <% elsif @game.zoom == 1 %>
-           <td class="detail-value"><%= "希望する(感想戦希望)" %></td> 
-          <% else %>
-           <td class="detail-value"><%= "希望しない" %></td> 
-           <% end %>
-        </tr>
-        <tr>
           <th class="detail-item">対戦者からのコメント</th>
           <td class="detail-value"><%= @game.text %></td>
         </tr>
@@ -39,14 +28,14 @@
     <%= f.text_area :game_comment_text, placeholder:"対局を申し込もう！",class:"comment-text", id:"comment-text-id" %>
     <%= f.submit "対局の申し込み", class:"comment-btn", id:"comment-btn-id" %>
     <% end %>
-<p><コメント一覧></p>
+<p id="comment-listing"><コメント一覧></p>
       <% @game_comments.each do |game_comment| %>
       <div class="comment-list", id="comment-list-id" game-comment-id=<%= current_user.id %> >
       <div class="comment-user">
       対局希望者 : <%= game_comment.user.nickname %> 
       </div>
       <div class="comment-content">
-      コメント内容 : <%= game_comment.game_comment_text %>
+      <%= safe_join(game_comment.game_comment_text.split("\n"),tag(:br)) %>
       </div>
       </div>
       <% end %>

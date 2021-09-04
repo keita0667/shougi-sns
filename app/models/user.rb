@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :tweets
@@ -14,10 +12,6 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :kiryoku
 
-  validates :nickname, presence: true
-  validates :kiryoku_id, numericality: { other_than: 1 }
-
-  def already_liked?(tweet)
-    self.likes.exists?(tweet_id: tweet.id)
-  end
+  validates :nickname, presence: true, length: { maximum: 6, message: "is maximum of 6 characters"}
+  validates :kiryoku_id, numericality: { other_than: 1, message: "can't be blank" }
 end

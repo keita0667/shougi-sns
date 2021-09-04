@@ -1,4 +1,6 @@
 class Tweet < ApplicationRecord
+  validates :tag, presence: true
+  validates :image, presence: true
   validates :text, presence: true
   belongs_to :user, optional: true
   has_many :comments, dependent: :destroy

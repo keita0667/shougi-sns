@@ -25,7 +25,7 @@ tr{
 }
 
 p{
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .detail-item {
@@ -89,10 +89,13 @@ p{
 }
 
 .comment-list{
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   border: 10px solid #dedede;
   font-size: 14px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .game-kaisai{
@@ -138,33 +141,35 @@ p{
 
 .game-date{
   width: 50vw;
+  margin-top: 3%;
 }
 .my-kiryoku{
   width: 50vw;
-}
-
-.game-zoom{
-  width: 80vw;
+  margin-top: 3%;
 }
 
 .comment-user{
   font-size: 15px;
   color: #CCCCCC;
+  margin-top: 3%;
 }
 
 .comment-content{
-  font-size: 25px;
+  font-size: 18px;
   color: #000000;
+  text-align: left;
+  margin-top: 3%;
 }
 
 .shougisns{
   font-weight: bolder;
   font-size: large;
+  padding-right: 18px;
 }
 
 .kaisai-description{
   text-align: center;
-  font-size: 40px;
+  font-size: 20px;
   margin: 20px;
 }
 

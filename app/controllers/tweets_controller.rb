@@ -14,7 +14,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     if @tweet.valid?
       @tweet.save
-      redirect_to root_path
     else
       render "new"
     end
@@ -26,6 +25,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if current_user.id != @tweet.user_id
   end
 
   def update
@@ -36,9 +36,7 @@ class TweetsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @tweet.comments.includes(:user)
-    @like = Like.new
-    @thanks = Thank.new
-    @special_thanks = SpecialThank.new
+    gon.current_tweet_id = params[:id]
   end
 
   def search
@@ -48,6 +46,10 @@ class TweetsController < ApplicationController
   private
   def tweet_params
     params.require(:tweet).permit(:image, :text, :tag).merge(user_id: current_user.id)
+  end
+
+  def tweet_update_params
+    params.require(:tweet).permit(:image, :text).merge(user_id: current_user.id)
   end
   
   def set_tweet

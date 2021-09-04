@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/tweets/#{comment.tweet.id}"
+    @comment = Comment.new(comment_params)
+    if @comment.valid?
+      @comment.save
+      render json:{ comment: @comment}
+    end
   end
 
   private

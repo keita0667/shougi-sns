@@ -7,31 +7,20 @@
  <%= raw sprintf(
   form.datetime_select( :game_date, discard_year:true, use_month_numbers: true, default: Date.today, date_separator: '%s', datetime_separator: '%s', time_separator: '%s'),'月', '日', '時') + '分' %>
  </div>
-
  <div class="my-kiryoku">
   <%= form.label :"あなたの棋力(例：アマ初段)" %><br />
   <%= form.collection_select(:kiryoku_id, Kiryoku.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
  </div>
-
-
- 
  <div>
- <%= "zoomで感想戦などをやりたいか入力" %>
- </div>
- <div class="game-zoom">
-  <%= form.select :zoom, [["希望する", 1], ["希望しない", 2], ["どちらでもいい", 0]], include_blank: "zoomで繋ぐことを希望しますか？"%>
- </div>
-
- 
- <div>
+ </br>
  <%= "使用する将棋アプリを入力" %>
  </div>
  <div class="game-app">
   <%= form.select :game_app, [["将棋ウォーズ", "将棋ウォーズ"], ["将棋倶楽部2‪4‬", "将棋倶楽部2‪4"], ["将棋Quest", "将棋Quest"]], include_blank: "使用するアプリを選択して下さい。"%>
  </div>
-
+ </br>
   <div class="game-text">
-  <%= form.text_area :text, placeholder: "", rows: "6" %>
+  <%= form.text_area :text, placeholder: "メッセージを入力", rows: "6" %>
  </div>
 
  <div class="game-submit">

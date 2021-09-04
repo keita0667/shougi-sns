@@ -44,17 +44,6 @@
           <th class="detail-item">対戦者からのコメント</th>
           <td class="detail-value"><%= game.text %></td>
         </tr>
-        <tr>
-          <th class="detail-item">zoom接続の希望有無</th>
-          <% if game.zoom == 0 %>
-           <td class="detail-value"><%= "どちらでもいい" %></td> 
-            
-          <% elsif game.zoom == 1 %>
-           <td class="detail-value"><%= "希望する(感想戦希望)" %></td> 
-          <% else %>
-           <td class="detail-value"><%= "希望しない" %></td> 
-           <% end %>
-        </tr>
       </tbody>
     </table>
     <%= link_to "対局を申し込む。", game_path(game.id), class:"vs-button" %>

@@ -4,31 +4,25 @@
     <title>将棋SNS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    <%= include_gon %>
   </head>
   <header class="header">
       <div class="header__bar row">
-        <div class="menu-list">
+      <%= image_tag "shougi-icon.png" ,class: 'shougi-icon-sized' %>
         <span class="shougisns"><%= link_to "将棋SNS", root_path %></span>
         <% if user_signed_in? %>
         <span class="shougisns"><%= link_to "オンラインゲーム会場", games_path(user_id: current_user.id) %></span>
-
-        <span>ログイン者：<span id="current_user.nickname"><%= current_user.nickname %></span></span>
-
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "shougisns" %>
+            <span class="login-user">ログイン者：<%= link_to current_user.nickname, root_path, id: "current_user_nickname" %></span>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout" %>
         <% else %>
-          
-            <%= link_to "ログイン", new_user_session_path, class: "shougisns" %>
-            <%= link_to "新規登録", new_user_registration_path, class: "shougisns" %>
-          
+            <%= link_to "ログイン", new_user_session_path, class: "login" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "sign-up" %>
         <% end %>
-        </div>
       </div>
 </header>
   <body>
-  
     <%= yield %>
     <footer>
     </footer>

@@ -1,33 +1,6 @@
 <div class="contents row">
-  <p><%= @nickname %>さんの投稿一覧</p>
+  <p class="toukousya"><%= @nickname %>さんの投稿一覧</p>
   <% @tweets.each do |tweet| %>
      <%= render partial: "tweets/tweet", locals: { tweet: tweet } %>
   <% end %>
-  <h3>いいねしている投稿</h3>
-<% @tweets.each do |tweet| %>
-<% if tweet.likes.present? %>
-<%= render partial: "tweets/tweet", locals: { tweet: tweet } %>
-<% end %>
-<% end %>
 </div>
-
-<h3>もらったthanksの数</h3>
-<% thanks_sum = 0 %>
-<% @comments.each do |comment| %>
-<% thanks_sum += comment.thanks.count %>
-<% end %>
-<%= thanks_sum %>
-
-<h3>もらったspecial thanksの数</h3>
-<% special_thanks_sum = 0 %>
-<% @comments.each do |comment| %>
-<% special_thanks_sum += comment.special_thanks.count %>
-<% end %>
-<%= special_thanks_sum %>
-
-<% @comments.each do |comment| %>
-<% if comment.special_thanks.present? %>
-<%= link_to comment, tweet_path(comment_id: comment.id) %>
-<% end %>
-<% end %>
-

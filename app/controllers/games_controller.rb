@@ -19,6 +19,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    gon.current_game_id = params[:id]
     @game_comment = GameComment.new
     @game_comments = @game.game_comments.includes(:user).all.order('created_at DESC')
   end
