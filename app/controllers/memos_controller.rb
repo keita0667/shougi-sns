@@ -14,7 +14,6 @@ class MemosController < ApplicationController
   def set_params
     params.permit(:text, :genre)
   end
- end
 
  @game_comment = GameComment.new(game_comment_params)
  if @game_comment.valid?
