@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: pictweet_production
-  username: pictweet
+  database: shougisns_production
+  username: shougisns
   password: <%= ENV['PICTWEET_DATABASE_PASSWORD'] %>
