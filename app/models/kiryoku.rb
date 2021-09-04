@@ -13,6 +13,6 @@ class Kiryoku < ActiveHash::Base
  ]
 
  include ActiveHash::Associations
- has_many :users
+ has_many :users, dependent: :destroy
  has_many :games, dependent: :destroy
  end

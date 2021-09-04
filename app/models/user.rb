@@ -1,13 +1,10 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :tweets
-  has_many :comments
-  has_many :likes
-  has_many :special_thanks
-  has_many :thanks
-  has_many :games
-  has_many :game_comments
+  has_many :tweets, dependent: :destroy 
+  has_many :comments, dependent: :destroy 
+  has_many :games, dependent: :destroy 
+  has_many :game_comments, dependent: :destroy 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :kiryoku

@@ -63,19 +63,9 @@ ActiveRecord::Schema.define(version: 2021_02_14_083848) do
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "tweet_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
   create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text"
     t.string "tag"
-    t.integer "likes_count"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -98,7 +88,5 @@ ActiveRecord::Schema.define(version: 2021_02_14_083848) do
   add_foreign_key "game_comments", "games"
   add_foreign_key "game_comments", "users"
   add_foreign_key "games", "users"
-  add_foreign_key "likes", "tweets"
-  add_foreign_key "likes", "users"
   add_foreign_key "tweets", "users"
 end
