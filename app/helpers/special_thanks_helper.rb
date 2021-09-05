@@ -1,2 +1,0 @@
-module SpecialThanksHelper
-end

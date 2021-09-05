@@ -16,8 +16,6 @@
 - has_many : games
 - has_many : game_comments
 - has_many : comments
-- has_many : thanks
-- has_many : special_thanks
 
 
 
@@ -34,31 +32,6 @@
 * * Association
 - belongs_to : user
 - has_many : comments
-
-<!-- thanksテーブル -->
-
-* thanksテーブル(Normal thanksテーブル)
-
-|Column      |Type     |Options                         |
-|------------|---------|--------------------------------|
-| user_id    | integer | null: false, foreign_key: true | #user_id外部キー参照
-| comment_id | integer | null: false, foreign_key: true | #comment_id外部キー参照
-
-* * Association
-- belongs_to : user, comment
-
-
-<!-- special thanksテーブル -->
-
-*  special thanksテーブル(special thanksテーブル)
-
-|Column           |Type     |Options                          |
-|-----------------|---------|---------------------------------|
-| user_id         | integer | null: false, foreign_key: true  | #user_id外部キー参照
-| comment_id      | integer | null: false, foreign_key: true  | #comment_id外部キー参照
-
-* * Association
-- belongs_to : user, comment
 
 
 <!-- commentsテーブル -->
@@ -82,7 +55,6 @@
 
 |Column        |Type     |Options                         |
 |--------------|---------|--------------------------------| 
-| zoom         | string  | null: false, unique: true      | #zoom接続
 | game_app     | string  | null: false                    | #使用する将棋アプリ
 | text         | text    | null: false                    | #コメント
 | kiryoku_id   | integer | null: false                    | #棋力

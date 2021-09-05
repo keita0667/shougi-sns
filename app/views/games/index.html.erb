@@ -1,6 +1,5 @@
 <div class="game-kaisai">
 <div class="kaisai-description"><%= "ここでは将棋アプリを通じて対局を主催したり、対局に申し込めます。" %></div>
-
 <div class="game-picture">
 <div>
 <%= image_tag 'wozu-top.jpeg', class:"wozu-top" %>
@@ -9,11 +8,9 @@
 <%= image_tag 'quest-top.png', class:"quest-top" %>
 </div>
 </div>
-
 <div>
 <%= link_to "対局を主催する", new_game_path(user_id: current_user.id), class:"kaisai-button" %>
 </div>
-
 <div>
 <% @games.each do |game| %>
 <table class="detail-table">
@@ -49,5 +46,4 @@
     <%= link_to "対局を申し込む。", game_path(game.id), class:"vs-button" %>
 <% end %>
 </div>
-
 </div>

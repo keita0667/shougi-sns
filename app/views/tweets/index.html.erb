@@ -1,10 +1,8 @@
-
 <%= link_to new_tweet_path do %>
 <div class="question-button">
 <%= image_tag "qa-icon.png", class:"qa-icon" %>
 <%= "質問する" %></div>
 <% end %>
-
 
 <%= form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |form| %>
   <%= form.select :keyword, [["序盤", "序盤"], ["中盤", "中盤"], ["終盤", "終盤"], ["全局面", "全局面"]], include_blank: "局面で絞り込む(序盤、中盤、終盤、全局面)" %>
