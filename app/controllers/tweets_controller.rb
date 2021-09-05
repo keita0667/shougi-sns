@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @tweet.comments.includes(:user)
+    @comments = @tweet.comments.includes(:user).order("created_at DESC")
     gon.current_tweet_id = params[:id]
   end
 
