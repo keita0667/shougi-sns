@@ -29,5 +29,4 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:game_date, :zoom, :game_app, :text, :kiryoku_id).merge(user_id: current_user.id)
   end
-
 end

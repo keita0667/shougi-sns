@@ -1,9 +1,9 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show, :search]
+  before_action :set_tweet, only: %i[edit show]
+  before_action :move_to_index, except: %i[index show search]
   def index
-   @tweets = Tweet.includes(:user).order("created_at DESC")
-   @games = Game.all
+    @tweets = Tweet.includes(:user).order('created_at DESC')
+    @games = Game.all
   end
 
   def new
@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
     if @tweet.valid?
       @tweet.save
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @tweet.comments.includes(:user).order("created_at DESC")
+    @comments = @tweet.comments.includes(:user).order('created_at DESC')
     gon.current_tweet_id = params[:id]
   end
 
@@ -44,6 +44,7 @@ class TweetsController < ApplicationController
   end
 
   private
+
   def tweet_params
     params.require(:tweet).permit(:image, :text, :tag).merge(user_id: current_user.id)
   end
@@ -51,14 +52,12 @@ class TweetsController < ApplicationController
   def tweet_update_params
     params.require(:tweet).permit(:image, :text).merge(user_id: current_user.id)
   end
-  
+
   def set_tweet
     @tweet = Tweet.find(params[:id])
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 end

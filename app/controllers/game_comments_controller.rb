@@ -3,7 +3,7 @@ class GameCommentsController < ApplicationController
     @game_comment = GameComment.new(game_comment_params)
     if @game_comment.valid?
       @game_comment.save
-      render json:{ game_comment: @game_comment }
+      render json: { game_comment: @game_comment }
     end
   end
 
@@ -12,5 +12,4 @@ class GameCommentsController < ApplicationController
   def game_comment_params
     params.require(:game_comment).permit(:game_comment_text).merge(user_id: current_user.id, game_id: params[:game_id])
   end
-
 end
